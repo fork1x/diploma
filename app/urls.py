@@ -20,6 +20,9 @@ from django.urls import include, path
 
 urlpatterns = [
     path('admin/', admin.site.urls), # https://mysite.com/admin/
-    path('', include('main.urls', namespace='main')), # https://mysite.com/
+    path('', include('main.urls', namespace='main')),
+    # Эта строка указывает, что все запросы, начинающиеся с корня сайта (''),
+    # должны быть переданы в маршруты, определенные в urls.py. Здесь используется функция include,
+    # которая позволяет подключить маршруты из другого файла.
     path('catalog/', include('goods.urls', namespace='catalog')), # https://mysite.com/catalog/
 ]
