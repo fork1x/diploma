@@ -119,10 +119,12 @@ USE_I18N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/4.2/howto/static-files/
+# Static files (CSS, JavaScript, Images) and media files
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'  # Папка для хранения загруженных файлов
 
 # Напоминие: Build paths inside the project like this: BASE_DIR / 'subdir'.
 STATICFILES_DIRS = [

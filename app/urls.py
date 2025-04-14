@@ -18,6 +18,9 @@ from django.contrib import admin
 from debug_toolbar.toolbar import debug_toolbar_urls # Отладка
 from django.urls import include, path
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('admin/', admin.site.urls), # https://mysite.com/admin/
@@ -26,4 +29,4 @@ urlpatterns = [
     # должны быть переданы в маршруты, определенные в urls.py. Здесь используется функция include,
     # которая позволяет подключить маршруты из другого файла.
     path('catalog/', include('goods.urls', namespace='catalog')), # https://mysite.com/catalog/
-] + debug_toolbar_urls()
+] + debug_toolbar_urls() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
