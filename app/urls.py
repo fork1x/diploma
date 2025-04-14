@@ -15,6 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from debug_toolbar.toolbar import debug_toolbar_urls # Отладка
 from django.urls import include, path
 
 
@@ -25,4 +26,4 @@ urlpatterns = [
     # должны быть переданы в маршруты, определенные в urls.py. Здесь используется функция include,
     # которая позволяет подключить маршруты из другого файла.
     path('catalog/', include('goods.urls', namespace='catalog')), # https://mysite.com/catalog/
-]
+] + debug_toolbar_urls()
