@@ -18,12 +18,6 @@ class Products(models.Model):
     description = models.TextField(verbose_name='Описание', blank=True, null=True, unique=True)
     category = models.ForeignKey(to=Categories, verbose_name='Категория', on_delete=models.CASCADE) # Связь с моделью Categories
     # models.CASCADE - удаляет все связанные продукты, если категория удалена
-    # models.SET_NULL - устанавливает значение NULL для связанных продуктов, если категория удалена
-    # models.SET_DEFAULT - устанавливает значение по умолчанию для связанных продуктов, если категория удалена
-    # models.RESTRICT - запрещает удаление категории, если есть связанные с ней продукты
-    # models.DO_NOTHING - ничего не делает, если категория удалена
-    # models.SET - устанавливает значение, которое вы укажете, если категория удалена
-    # models.PROTECT - запрещает удаление категории, если есть связанные с ней продукты
     
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name='Цена')
     quantity = models.PositiveIntegerField(default=0, verbose_name='Количество')
@@ -37,3 +31,11 @@ class Products(models.Model):
         verbose_name_plural = 'Продукты'
     def __str__(self):
         return self.name
+    
+    def sell_price(self):
+        if self.discount:
+            return round(self.price - (self.price * self.discount / 100), 2)
+        return self.price
+    
+    def display_id(self):
+        return f'{self.id:03}'
