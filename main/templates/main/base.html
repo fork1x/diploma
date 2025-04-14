@@ -1,4 +1,5 @@
 {% load static %}
+{% load tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,9 +88,14 @@
                             height="16">
                     </button>
                     <ul class="dropdown-menu bg-dark" data-bs-theme="dark">
+
+
+                        {% categories as categories %}
                         {% for category in categories %}
                             <li><a class="dropdown-item text-white" href="{% url "catalog:index" %}">{{ category.name }}</a></li>
                         {% endfor %}
+
+
                     </ul>
                 </div>
                 <!-- Знак корзины, вызывает модальное окно -->

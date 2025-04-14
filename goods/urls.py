@@ -5,5 +5,5 @@ app_name = 'goods'  # Имя пространства имен для прило
 
 urlpatterns = [  # Пути, которые относятся только к приложению goods
     path('', views.catalog, name='index'), # Путь на главную страницу. Пусто означает, что это корень сайта. https://mysite.com/
-    path('product/', views.product, name='product'),
+    path('product/<slug:product_slug>/', views.product, name='product'),
 ]
