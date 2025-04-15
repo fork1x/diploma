@@ -3,7 +3,10 @@ from goods.models import Products
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def catalog(request, category_slug, page=1):
+def catalog(request, category_slug):
+
+    page = request.GET.get('page', 1) # Получаем номер страницы из GET-запроса. Если номер страницы не указан, то по умолчанию будет 1
+
     if category_slug == 'all':
         goods = Products.objects.all() # Получаем все товары из базы данных
     else:
@@ -11,7 +14,7 @@ def catalog(request, category_slug, page=1):
         goods = get_list_or_404(Products, category__slug=category_slug) # Получаем товары по категории
 
     paginator = Paginator(goods, 3) # Создаем пагинатор, который будет разбивать товары на страницы по 6 товаров на странице
-    current_page = paginator.page(page) # Получаем текущую страницу
+    current_page = paginator.page(round(int(page))) # Получаем текущую страницу
 
     context = {
         "title": "Каталог",
