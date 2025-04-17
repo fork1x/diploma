@@ -29,4 +29,5 @@ urlpatterns = [
     # должны быть переданы в маршруты, определенные в urls.py. Здесь используется функция include,
     # которая позволяет подключить маршруты из другого файла.
     path('catalog/', include('goods.urls', namespace='catalog')), # https://mysite.com/catalog/
+    path('user/', include('users.urls', namespace='user')),
 ] + debug_toolbar_urls() + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
