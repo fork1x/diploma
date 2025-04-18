@@ -81,17 +81,11 @@ if DEBUG:
             'PORT': '5432',
     }
 else:
-    DATABASE_URL = os.environ.get('DATABASE_URL')  # Define DATABASE_URL
-    DATABASES['default'] = {
-        'ENGINE': 'django.db.backends.postgresql',  # Используем PostgreSQL
-        'DB_HOST': os.environ.get('DB_HOST'),
-        'DB_NAME': os.environ.get('DB_NAME'),
-        'DB_PORT': os.environ.get('DB_PORT'),
-        'DB_USER': os.environ.get('DB_USER'),
-        'DB_PASSWORD': os.environ.get('DB_PASSWORD'),
-    }
-    db_config = dj_database_url.config(default=DATABASE_URL, conn_max_age=600, conn_health_checks=True)
-    DATABASES['default'].update(db_config)
+    DATABASES['default'] = dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        conn_health_checks=True
+    )
 
 
 AUTH_PASSWORD_VALIDATORS = [
